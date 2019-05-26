@@ -1,0 +1,15 @@
+{{#partial "content"}}
+    <h1>{{department.name}}</h1>
+    <p>Here are all the employees in this Department:</p>
+    <ul>
+        {{#each tasks}}
+            <li>
+                <p><a href="/departments/{{department.id}}/tasks/{{id}}">{{description}}</a></p>
+            </li>
+        {{/each}}
+    </ul>
+    <a href="/departments/{{department.id}}/edit">Edit this Employee</a><br>
+    <a href="/departments/{{department.id}}/delete">DELETE this Employee</a>
+{{/partial}}
+
+{{> layout.hbs}}
