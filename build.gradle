@@ -14,7 +14,7 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile "com.sparkjava:spark-core:2.8.0"
+    compile group: 'com.sparkjava', name: 'spark-core', version: '2.3'
     compile "com.sparkjava:spark-template-handlebars:2.7.1"
     compile 'org.slf4j:slf4j-simple:1.7.21'
     compile 'org.sql2o:sql2o:1.5.4'
@@ -26,4 +26,4 @@ applicationName = "saftechteam"
 mainClassName = 'App'
 defaultTasks = ['clean']
 
-task stage(dependsOn: ['clean', 'installApp'])
+
