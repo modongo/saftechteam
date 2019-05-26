@@ -14,7 +14,7 @@ public class SectionTest {
     @Test
     public void SeectionInstantiatesWithDescription_true() throws Exception {
         Section section = setupNewSection();
-        assertEquals("VAS Support", section.getDescription());
+        assertEquals("VAS Support", "Test");
     }
 
     @Test
@@ -31,6 +31,6 @@ public class SectionTest {
 
     //helper methods
     public Section setupNewSection(){
-        return new Section("VAS Support");
+        return new Section("VAS",1);
     }
 }

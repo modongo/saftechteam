@@ -20,11 +20,11 @@ public class Sql2oDepartmentDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+//        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+//        Sql2o sql2o = new Sql2o(connectionString, "", "");
         departmentDao = new Sql2oDepartmentDao();
         sectionDao = new Sql2oSectionDao();
-        conn = sql2o.open();
+        conn = DB.sql2o.open();
     }
 
     @After
@@ -41,7 +41,7 @@ public class Sql2oDepartmentDaoTest {
     }
 
     @Test
-    public void existingCategoriesCanBeFoundById() throws Exception {
+    public void existingDepartmentsCanBeFoundById() throws Exception {
         Department department =setupNewDepartment();
         departmentDao.add(department);
         Department founddepartment = departmentDao.findById(department.getId());
@@ -49,14 +49,14 @@ public class Sql2oDepartmentDaoTest {
     }
 
     @Test
-    public void addedCategoriesAreReturnedFromGetAll() throws Exception {
+    public void addedDepartmentsAreReturnedFromGetAll() throws Exception {
         Department department =setupNewDepartment();
         departmentDao.add(department);
         assertEquals(1, departmentDao.getAll().size());
     }
 
     @Test
-    public void noCategoriesReturnsEmptyList() throws Exception {
+    public void noDepartmentsReturnsEmptyList() throws Exception {
         assertEquals(0, departmentDao.getAll().size());
     }
 
@@ -94,8 +94,8 @@ public class Sql2oDepartmentDaoTest {
         Department department =setupNewDepartment();
         departmentDao.add(department);
         int departmentId = department.getId();
-        Section newSection = new Section("VAS Support", departmentId);
-        Section otherSection = new Section("Revenue Management", departmentId);
+        Section newSection = new Section("VAS Support", 8);
+        Section otherSection = new Section("Revenue Management", 4);
         Section thirdSection = new Section("Financial Services", departmentId);
         sectionDao.add(newSection);
         sectionDao.add(otherSection); //we are not adding Section 3 so we can test things precisely.

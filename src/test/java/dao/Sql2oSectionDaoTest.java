@@ -11,10 +11,10 @@ public class Sql2oSectionDaoTest {
 
     @Before
     public void setUp() throws Exception {
-        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-        Sql2o sql2o = new Sql2o(connectionString, "", "");
+//        String connectionString = "jdbc:h2:mem:testing;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
+//        Sql2o sql2o = new Sql2o(connectionString, "", "");
         SectionDao = new Sql2oSectionDao(); //ignore me for now
-        conn = sql2o.open(); //keep connection open through entire test so it does not get erased
+        conn = DB.sql2o.open(); //keep connection open through entire test so it does not get erased
     }
 
     @After
@@ -22,15 +22,15 @@ public class Sql2oSectionDaoTest {
         conn.close();
     }
     @Test
-    public void addingCourseSetsId() throws Exception {
-        Section section = new Section("VAS Supportn");
+    public void addingSectionSetsId() throws Exception {
+        Section section = new Section("VAS Supportn",3);
         int originalSectionId = section.getId();
         SectionDao.add(section);
         assertNotEquals(originalSectionId, section.getId()); //how does this work?
     }
     @Test
-    public void existingTasksCanBeFoundById() throws Exception {
-        Section section = new Section("VAS Supportn");
+    public void existingSectionsCanBeFoundById() throws Exception {
+        Section section = new Section("VAS Supportn",3);
         SectionDao.add(section); //add to dao (takes care of saving)
         Section foundSection = SectionDao.findById(section.getId()); //retrieve
         assertEquals(section, foundSection); //should be the same
