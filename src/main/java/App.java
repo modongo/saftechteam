@@ -129,12 +129,12 @@ public class App {
         get("/sections/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Department> departments = departmentDao.getAll();
-            model.put("department", departments);
+            model.put("departments", departments);
             return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
 
         //task: process new task form
-        post("/sections", (req, res) -> { //URL to make new task on POST route
+        post("/sections/", (req, res) -> { //URL to make new task on POST route
             Map<String, Object> model = new HashMap<>();
             List<Department> allDepartments = departmentDao.getAll();
             model.put("departments", allDepartments);

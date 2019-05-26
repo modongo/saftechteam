@@ -1,43 +1,26 @@
 {{#partial "content"}}
 
-    {{#if editTask}}
-        <h1>Edit this Staff info!</h1>
-        <form action="/sections/{{editTask.id}}" method="post">
-        <br>
-            <label for="description">Edit this staff's job description</label>
-            <input id="description" name="description" type="text" value="{{editTask.description}}">
-        <br>
-        <label for="categoryId">Update this staff's department:</label>
-                    <select id="categoryId" name="categoryId">
-                        {{#each categories}}
-                            <option value="{{id}}">{{name}}</option>
-                        {{/each}}
-                    </select>
-                    <p>Don't see the right department?<a href="/departments/new">Add a new department first.</a></p>
-                    <button type="submit" class="btn btn-default">Go!</button>
-           </form>
-
-    {{else}}
-    <h1>Add a new Section</h1>
 
     <form action="/sections" method="post">
         {{#if departments}}
-        <label for="description">New Staff Job Description</label>
-        <input id="description" name="description" type="text">
-        <label for="departmentId">Select the department:</label>
-         <select id="departmentId" name="departmentId">
-                            {{#each departments}}
-                                <option value="{{id}}">{{name}}</option>
-                            {{/each}}
-                        </select>
+            <label for="description">New Section name</label>
+            <input id="description" name="description" type="text">
+            <label for="name">Select the department:</label>
+            <select id="name" name="name">
+                {{#each departments}}
+                    <option value="/departments/{{name}}">{{name}}</option>
+                {{/each}}
+            </select>
 
-        <p>Don't see the right Department?<a href="/departments/new">Add a new Department first.</a></p>
-     {{else}}
-    <h3> You'll need to add a department before you add a Staff. <a href="/departments/new">Add one here.</a> </h3>
-    {{/if}}
-        <button type="submit" class="btn btn-default">Go!</button>
+            <p>Don't see the right Department?<a href="/departments/new">Add a new Department first.</a></p>
+        {{else}}
+            <h3> You'll need to add a department before you add a Staff. <a href="/departments/new">Add one here.</a> </h3>
+        {{/if}}
+        <button type="submit" class="btn btn-default">Submit!</button>
     </form>
-    {{/if}}
+
+
 {{/partial}}
+
 
 {{> layout.hbs}}
