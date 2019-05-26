@@ -9,7 +9,7 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    jcenter()
+    mavenCentral()
 }
 
 dependencies {
@@ -24,4 +24,4 @@ dependencies {
 
 applicationName = "saftechteam"
 mainClassName = 'App'
-task stage(dependsOn: ['clean', 'installDist'])
+task stage(dependsOn: ['clean', 'installApp'])
