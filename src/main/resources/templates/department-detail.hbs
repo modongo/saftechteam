@@ -1,7 +1,10 @@
-{{#partial "content"}}
-    <div class="jumbotron">
-    <h1>Welcome to {{department.name}} Department</h1>
-    <hr class="mt-2 mb-5">
+
+{{#partial "header"}}Welcome to {{department.name}} Department{{/partial}}
+
+
+<hr class="mt-2 mb-5">
+    {{#partial "content"}}
+        <div class="jumbotron">
     <p>Here are all the sections in this Department:</p>
     <ul>
         {{#each section}}
