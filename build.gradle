@@ -27,4 +27,4 @@ mainClassName = 'App'
 
 
 
-task stage(dependsOn: ['build', 'clean'])
+task stage(dependsOn: ['clean', 'installDist'])
