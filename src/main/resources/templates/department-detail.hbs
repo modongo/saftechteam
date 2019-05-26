@@ -1,15 +1,18 @@
 {{#partial "content"}}
-    <h1>{{department.name}}</h1>
-    <p>Here are all the employees in this Department:</p>
+    <div class="jumbotron">
+    <h1>Welcome to {{department.name}} Department</h1>
+    <hr class="mt-2 mb-5">
+    <p>Here are all the sections in this Department:</p>
     <ul>
-        {{#each tasks}}
+        {{#each section}}
             <li>
-                <p><a href="/departments/{{department.id}}/tasks/{{id}}">{{description}}</a></p>
+                <p><a href="/departments/{{department.id}}/sections/{{department.id}}">{{description}}</a></p>
             </li>
         {{/each}}
     </ul>
-    <a href="/departments/{{department.id}}/edit">Edit this Employee</a><br>
-    <a href="/departments/{{department.id}}/delete">DELETE this Employee</a>
+    <a href="/departments/{{department.id}}/edit">Edit this Department</a><br>
+    <a href="/departments/{{department.id}}/delete">DELETE this Department</a>
+    </div>
 {{/partial}}
 
 {{> layout.hbs}}

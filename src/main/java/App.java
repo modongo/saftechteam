@@ -151,7 +151,7 @@ public class App {
             model.put("department", foundDepartment);
             model.put("section", foundSection); //add it to model for template to display
             model.put("departments", departmentDao.getAll()); //refresh list of links for navbar
-            return new ModelAndView(model, "section-detail.hbs"); //individual task page.
+            return new ModelAndView(model, "section-detail.hbs"); //individual section page.
         }, new HandlebarsTemplateEngine());
 
         //get: show a form to update a section
