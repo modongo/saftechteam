@@ -1,36 +1,98 @@
 package models;
 
-import org.junit.Test;
+import org.sql2o.*;
 import java.time.LocalDateTime;
+import org.junit.*;
 import static org.junit.Assert.*;
 
 public class SectionTest {
-    @Test
-    public void NewSectionObjectGetsCorrectlyCreated_true() throws Exception {
-        Section section = setupNewSection();
-        assertEquals(true, section instanceof Section);
+    Section mySection;
+
+    @Rule
+    public DatabaseRule database = new DatabaseRule();
+
+    @Before
+    public void setUp() {
+        mySection = new Section("Mow the lawn", 1);
     }
 
     @Test
-    public void SeectionInstantiatesWithDescription_true() throws Exception {
-        Section section = setupNewSection();
-        assertEquals("VAS Support", "Test");
+    public void Section_instantiatesCorrectly_true() {
+        assertTrue(mySection instanceof Section);
     }
 
     @Test
-    public void isCompletedPropertyIsFalseAfterInstantiation() throws Exception {
-        Section section = setupNewSection();
-        assertEquals(false, section.getCompleted()); //should never start as completed
+    public void Section_instantiatesWithDescription_String() {
+        assertEquals("Mow the lawn", mySection.getDescription());
     }
 
     @Test
-    public void getCreatedAtInstantiatesWithCurrentTimeToday() throws Exception {
-        Section section = setupNewSection();
-        assertEquals(LocalDateTime.now().getDayOfWeek(), section.getCreatedAt().getDayOfWeek());
+    public void isCompleted_isFalseAfterInstantiation_false() {
+        assertFalse(mySection.getCompleted());
     }
 
-    //helper methods
-    public Section setupNewSection(){
-        return new Section("VAS",1);
+    @Test
+    public void getCreatedAt_instantiatesWithCurrentTime_today() {
+        assertEquals(LocalDateTime.now().getDayOfWeek(), mySection.getCreatedAt().getDayOfWeek());
     }
+//
+//    @Test
+//    public void all_returnsAllInstancesOfSection_true() {
+//        Section firstSection = new Section("Mow the lawn", 1);
+//        firstSection.save();
+//        Section secondSection = new Section("Buy groceries", 1);
+//        secondSection.save();
+//        assertTrue(Section.all().get(0).equals(firstSection));
+//        assertTrue(Section.all().get(1).equals(secondSection));
+//    }
+//
+//    @Test
+//    public void getId_SectionsInstantiateWithAnID_1() {
+//        mySection.save();
+//        assertTrue(mySection.getId() > 0);
+//    }
+//
+//    @Test
+//    public void find_returnsSectionWithSameId_secondSection() {
+//        Section firstSection = new Section("Mow the lawn", 1);
+//        firstSection.save();
+//        Section secondSection = new Section("Buy groceries", 1);
+//        secondSection.save();
+//        assertEquals(Section.find(secondSection.getId()), secondSection);
+//    }
+//
+//    @Test
+//    public void equals_returnsTrueIfDescriptionsAreTheSame() {
+//        Section firstSection = new Section("Mow the lawn", 1);
+//        Section secondSection = new Section("Mow the lawn", 1);
+//        assertTrue(firstSection.equals(secondSection));
+//    }
+//
+//    @Test
+//    public void save_returnsTrueIfDescriptionsAreTheSame() {
+//        mySection.save();
+//        assertTrue(Section.all().get(0).equals(mySection));
+//    }
+//
+//    @Test
+//    public void save_assignsIdToObject() {
+//        mySection.save();
+//        Section savedSection = Section.all().get(0);
+//        assertEquals(mySection.getId(), savedSection.getId());
+//    }
+//
+//    @Test
+//    public void update_updatesSectionDescription_true() {
+//        mySection.save();
+//        mySection.update("Take a nap");
+//        assertEquals("Take a nap", Section.find(mySection.getId()).getDescription());
+//    }
+//
+//    @Test
+//    public void delete_deletesSection_true() {
+//        mySection.save();
+//        int mySectionId = mySection.getId();
+//        mySection.delete();
+//        assertNull(Section.find(mySectionId));
+//    }
 }

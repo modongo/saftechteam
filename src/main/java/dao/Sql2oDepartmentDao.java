@@ -4,9 +4,9 @@ import models.Department;
 import models.Section;
 //import models.Staff;
 import org.sql2o.Connection;
-import org.sql2o.Sql2o;
+
 import org.sql2o.Sql2oException;
-import sun.swing.SwingUtilities2;
+
 
 import java.util.List;
 
