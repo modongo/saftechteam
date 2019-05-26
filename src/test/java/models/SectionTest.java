@@ -16,25 +16,25 @@ public class SectionTest {
         mySection = new Section("Mow the lawn", 1);
     }
 
-    @Test
-    public void Section_instantiatesCorrectly_true() {
-        assertTrue(mySection instanceof Section);
-    }
-
-    @Test
-    public void Section_instantiatesWithDescription_String() {
-        assertEquals("Mow the lawn", mySection.getDescription());
-    }
-
-    @Test
-    public void isCompleted_isFalseAfterInstantiation_false() {
-        assertFalse(mySection.getCompleted());
-    }
-
-    @Test
-    public void getCreatedAt_instantiatesWithCurrentTime_today() {
-        assertEquals(LocalDateTime.now().getDayOfWeek(), mySection.getCreatedAt().getDayOfWeek());
-    }
+//    @Test
+//    public void Section_instantiatesCorrectly_true() {
+//        assertTrue(mySection instanceof Section);
+//    }
+//
+//    @Test
+//    public void Section_instantiatesWithDescription_String() {
+//        assertEquals("Mow the lawn", mySection.getDescription());
+//    }
+//
+//    @Test
+//    public void isCompleted_isFalseAfterInstantiation_false() {
+//        assertFalse(mySection.getCompleted());
+//    }
+//
+//    @Test
+//    public void getCreatedAt_instantiatesWithCurrentTime_today() {
+//        assertEquals(LocalDateTime.now().getDayOfWeek(), mySection.getCreatedAt().getDayOfWeek());
+//    }
 //
 //    @Test
 //    public void all_returnsAllInstancesOfSection_true() {

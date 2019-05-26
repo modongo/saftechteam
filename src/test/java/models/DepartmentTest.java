@@ -16,15 +16,15 @@ public class DepartmentTest {
         testDepartment = new Department("Home");
     }
 
-    @Test
-    public void Department_instantiatesCorrectly_true() {
-        assertTrue(testDepartment instanceof Department);
-    }
-
-    @Test
-    public void getName_DepartmentInstantiatesWithName_Home() {
-        assertEquals("Home", testDepartment.getName());
-    }
+//    @Test
+//    public void Department_instantiatesCorrectly_true() {
+//        assertTrue(testDepartment instanceof Department);
+//    }
+//
+//    @Test
+//    public void getName_DepartmentInstantiatesWithName_Home() {
+//        assertEquals("Home", testDepartment.getName());
+//    }
 //
 //    @Test
 //    public void all_returnsAllInstancesOfDepartment_true() {
