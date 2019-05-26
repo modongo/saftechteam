@@ -3,12 +3,9 @@ import java.util.List;
 import java.util.Map;
 
 import dao.Sql2oDepartmentDao;
-import dao.SectionDao;
 import dao.Sql2oSectionDao;
 import models.Department;
 import models.Section;
-import dao.DB;
-//import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
@@ -28,17 +25,15 @@ public class App {
         }
 
         port(port);
-//         final Sql2o sql2o = null;
+
 
 
         staticFileLocation("/public");
-//        String connectionString = "jdbc:h2:~/todolist.db;INIT=RUNSCRIPT from 'classpath:db/create.sql'";
-//        Sql2o sql2o = new Sql2o(connectionString, "", "");
         Sql2oSectionDao sectionDao = new Sql2oSectionDao();
         Sql2oDepartmentDao departmentDao = new Sql2oDepartmentDao();
 
 
-        //get: show all tasks in all categories and show all categories
+        //get: show all tasks in all department and show all sections
         get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Department> allCategories = departmentDao.getAll();
@@ -48,7 +43,7 @@ public class App {
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //get: show a form to create a new category
+        //get: show a form to create a new department
         get("/departments/new", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             List<Department> departments = departmentDao.getAll(); //refresh list of links for navbar
@@ -56,7 +51,7 @@ public class App {
             return new ModelAndView(model, "department-form.hbs"); //new layout
         }, new HandlebarsTemplateEngine());
 
-        //post: process a form to create a new category
+        //post: process a form to create a new department
         post("/departments", (req, res) -> { //new
             Map<String, Object> model = new HashMap<>();
             String name = req.queryParams("name");
@@ -67,7 +62,7 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
 
-        //get: delete all categories and all tasks
+        //get: delete all departments and all sections
         get("/departments/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             departmentDao.clearAllDepartments();
@@ -76,7 +71,7 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
-        //get: delete all tasks
+        //get: delete all sections
         get("/sections/delete", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             sectionDao.clearAllSections();
@@ -96,7 +91,7 @@ public class App {
             return new ModelAndView(model, "department-detail.hbs"); //new
         }, new HandlebarsTemplateEngine());
 
-        //get: show a form to update a category
+        //get: show a form to update a department
         get("/departments/:id/edit", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             model.put("editDepartment", true);
@@ -106,7 +101,7 @@ public class App {
             return new ModelAndView(model, "department-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //post: process a form to update a category
+        //post: process a form to update a department
         post("/department/:id", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
             int idOfDepartmentToEdit = Integer.parseInt(req.params("id"));
@@ -133,8 +128,8 @@ public class App {
             return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //task: process new task form
-        post("/sections/", (req, res) -> { //URL to make new task on POST route
+        //task: process new section form
+        post("/sections", (req, res) -> { //URL to make new sections on POST route
             Map<String, Object> model = new HashMap<>();
             List<Department> allDepartments = departmentDao.getAll();
             model.put("departments", allDepartments);

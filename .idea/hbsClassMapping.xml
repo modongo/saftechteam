@@ -4,6 +4,7 @@
     <option name="psiMap">
       <map>
         <entry key="$PROJECT_DIR$/src/main/resources/templates/department-form.hbs" />
+        <entry key="$PROJECT_DIR$/src/main/resources/templates/layout.hbs" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/section-detail.hbs" />
         <entry key="$PROJECT_DIR$/src/main/resources/templates/section-form.hbs" />
       </map>

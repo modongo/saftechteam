@@ -1,14 +1,13 @@
 {{#partial "content"}}
 
-
     <form action="/sections" method="post">
         {{#if departments}}
             <label for="description">New Section name</label>
             <input id="description" name="description" type="text">
-            <label for="name">Select the department:</label>
-            <select id="name" name="name">
+            <label for="departmentId">Select the department:</label>
+            <select id="departmentId" name="departmentId">
                 {{#each departments}}
-                    <option value="/departments/{{name}}">{{name}}</option>
+                    <option value="{{id}}">{{name}}</option>
                 {{/each}}
             </select>
 
