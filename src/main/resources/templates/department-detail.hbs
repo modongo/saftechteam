@@ -6,11 +6,11 @@
     {{#partial "content"}}
     <p>Here are all the sections in this Department:</p>
 
-    <ul>
+    <ul  class="list-group">
         {{#if sections}}
         {{#each sections}}
-            <li name="/sections/{{id}}">
-                <p><a href="/departments/{{department.id}}/sections/{{department.id}}">{{description}}</a></p>
+            <li name="/sections/{{id}}" class="list-group-item list-group-item-success">
+                <a href="/departments/{{department.id}}/sections/{{department.id}}">{{description}}</a>
             </li>
         {{/each}}
         {{else}}
