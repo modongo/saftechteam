@@ -6,6 +6,7 @@ import dao.Sql2oDepartmentDao;
 import dao.Sql2oSectionDao;
 import models.Department;
 import models.Section;
+import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import static spark.Spark.*;
@@ -134,8 +135,8 @@ public class App {
             List<Department> allDepartments = departmentDao.getAll();
             model.put("departments", allDepartments);
             String description = req.queryParams("description");
-            int departmentId = Integer.parseInt(req.queryParams("departmentId"));
-            Section newSection = new Section(description, departmentId);        //See what we did with the hard coded categoryId?
+            int departmetId = Integer.parseInt(req.queryParams("departmetId"));
+            Section newSection = new Section(description, departmetId);        //See what we did with the hard coded categoryId?
             sectionDao.add(newSection);
             res.redirect("/");
             return null;

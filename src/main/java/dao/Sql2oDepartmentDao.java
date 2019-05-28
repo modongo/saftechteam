@@ -98,7 +98,7 @@ public class Sql2oDepartmentDao implements DepartmentDao {
     @Override
     public List<Section> getAllSectionsByDepartment(int departmentId) {
         try(Connection con = DB.sql2o.open()){
-            return con.createQuery("SELECT * FROM sections WHERE id = :departmentId")
+            return con.createQuery("SELECT * FROM sections WHERE categoryid = :departmentId")
                     .addParameter("departmentId", departmentId)
                     .executeAndFetch(Section.class);
         }

@@ -4,18 +4,21 @@
 
 <hr class="mt-2 mb-5">
     {{#partial "content"}}
-        <div class="jumbotron">
     <p>Here are all the sections in this Department:</p>
+
     <ul>
-        {{#each section}}
-            <li>
+        {{#if sections}}
+        {{#each sections}}
+            <li name="/sections/{{id}}">
                 <p><a href="/departments/{{department.id}}/sections/{{department.id}}">{{description}}</a></p>
             </li>
         {{/each}}
+        {{else}}
+            <p>No section</p>
+        {{/if}}
     </ul>
     <a href="/departments/{{department.id}}/edit">Edit this Department</a><br>
     <a href="/departments/{{department.id}}/delete">DELETE this Department</a>
-    </div>
 {{/partial}}
 
 {{> layout.hbs}}

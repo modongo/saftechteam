@@ -32,10 +32,10 @@ public class Section {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Section)) return false;
-        Section task = (Section) o;
-        return completed == task.completed &&
-                id == task.id &&
-                Objects.equals(description, task.description);
+        Section section = (Section) o;
+        return completed == section.completed &&
+                id == section.id &&
+                Objects.equals(description, section.description);
     }
 
     @Override

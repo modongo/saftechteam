@@ -12,11 +12,11 @@ public class Sql2oSectionDao implements SectionDao {
 
     @Override
     public void add(Section section) {
-        String sql = "INSERT INTO sections (description, departmentId) VALUES (:description, :departmentId)"; //raw sql
-        try(Connection con = DB.sql2o.open()){ //try to open a connection
+        String sql = "INSERT INTO sections (description, categoryid) VALUES (:description,:departmentId)";
+        try(Connection con = DB.sql2o.open()){
             int id = (int) con.createQuery(sql, true) //make a new variable
                     .bind(section)
-                    .executeUpdate() //run it all
+                     .executeUpdate() //run it all
                     .getKey(); //int id is now the row number (row “key”) of db
             section.setId(id); //update object to set id now from database
         } catch (Sql2oException ex) {
@@ -43,7 +43,7 @@ public class Sql2oSectionDao implements SectionDao {
 
     @Override
     public void update(int id, String newDescription, int newCategoryId){
-        String sql = "UPDATE sections SET (description, categoryId) = (:description, :categoryId) WHERE id=:id";   //raw sql
+        String sql = "UPDATE sections SET (description, categoryid) = (:description, :departmentId) WHERE id=:id";   //raw sql
         try(Connection con = DB.sql2o.open()){
             con.createQuery(sql)
                     .addParameter("description", newDescription)
