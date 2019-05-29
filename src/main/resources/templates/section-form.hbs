@@ -25,8 +25,11 @@
             <input id="description" name="description" type="text">
             <label for="departmentId">Enter the department:</label>
 
-            <input id="departmentId" name="departmentId" type="text">
-
+            <select id="departmentId" name="departmentId" >
+                {{#each departments}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select></br></br>
         {{else}}
         {{/if}}
         <button type="submit" class="btn btn-default">Submit!</button>

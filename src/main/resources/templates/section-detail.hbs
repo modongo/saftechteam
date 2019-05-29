@@ -1,10 +1,22 @@
+{{#partial "header"}}
+    Welcome to {{sections.description}}  in {{categories.name}}
+{{/partial}}
 {{#partial "content"}}
 
-    <p>See Section details and staff information:</p>
+    {{#if staff}}
+        <ul  class="list-group">
 
-    <ul  class="list-group">
-        <li class="list-group-item list-group-item-light"></li>
-    </ul>
+        {{#each staff }}
+            <li class="list-group-item list-group-item-light">{{firstname}} {{lastname}},  {{ekNo}}   {{role}}
+            </li>
+        {{/each}}
+        </ul>
+    {{else}}
+        <p>No employees</p>
+    {{/if}}
+    <p>Don't see any employee?<a href="/staff/new">Add a new one first.</a></p>
+
+
 
 {{/partial}}
 

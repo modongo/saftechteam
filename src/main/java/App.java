@@ -1,15 +1,19 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import spark.ModelAndView;
+import static spark.Spark.*;
+import spark.template.handlebars.HandlebarsTemplateEngine;
 
+
+import dao.DB;
 import dao.Sql2oDepartmentDao;
 import dao.Sql2oSectionDao;
+import dao.Sql2oStaffDao;
 import models.Department;
 import models.Section;
-import org.sql2o.Sql2o;
-import spark.ModelAndView;
-import spark.template.handlebars.HandlebarsTemplateEngine;
-import static spark.Spark.*;
+import models.Staff;
+//import org.sql2o.Sql2o;
 
 public class App {
     public static void main(String[] args) {
@@ -30,8 +34,9 @@ public class App {
 
 
         staticFileLocation("/public");
-        Sql2oSectionDao sectionDao = new Sql2oSectionDao();
-        Sql2oDepartmentDao departmentDao = new Sql2oDepartmentDao();
+        Sql2oSectionDao sectionDao = new Sql2oSectionDao(DB.sql2o);
+        Sql2oDepartmentDao departmentDao = new Sql2oDepartmentDao(DB.sql2o);
+        Sql2oStaffDao staffDao = new Sql2oStaffDao(DB.sql2o);
 
 
         //get: show all tasks in all department and show all sections
@@ -40,7 +45,7 @@ public class App {
             List<Department> allCategories = departmentDao.getAll();
             model.put("departments", allCategories);
             List<Section> tasks = sectionDao.getAll();
-            model.put("tasks", tasks);
+            model.put("section", tasks);
             return new ModelAndView(model, "index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -129,18 +134,19 @@ public class App {
             return new ModelAndView(model, "section-form.hbs");
         }, new HandlebarsTemplateEngine());
 
-        //task: process new section form
-        post("/sections", (req, res) -> { //URL to make new sections on POST route
+       // section: process new section form
+        post("/sections", (req, res) -> {
             Map<String, Object> model = new HashMap<>();
-            List<Department> allDepartments = departmentDao.getAll();
-            model.put("departments", allDepartments);
+            List<Department> allCategories = departmentDao.getAll();
+            model.put("categories", allCategories);
             String description = req.queryParams("description");
-            int departmetId = Integer.parseInt(req.queryParams("departmetId"));
-            Section newSection = new Section(description, departmetId);        //See what we did with the hard coded categoryId?
-            sectionDao.add(newSection);
+            int categoryId = Integer.parseInt(req.queryParams("departmentId"));
+            Section newTask = new Section(description, categoryId ); //ignore the hardcoded categoryId
+            sectionDao.add(newTask);
             res.redirect("/");
             return null;
         }, new HandlebarsTemplateEngine());
+
 
         //get: show an individual section that is nested in a department
         get("/departments/:department_id/sections/:section_id", (req, res) -> {
@@ -177,5 +183,82 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        //Employee Section Begins here
+
+
+        //get: show new staff form
+        get("/staff/new", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Section> sections = sectionDao.getAll();
+            model.put("sections", sections);
+            return new ModelAndView(model, "staff-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //Section: process new staff form
+        post("/staff", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Section> allsections= sectionDao.getAll();
+            model.put("sections", allsections);
+            String firstname = req.queryParams("firstname");
+            String lastname = req.queryParams("lastname");
+            String ekNo = req.queryParams("ekNo");
+            String designation = req.queryParams("designation");
+            int SectionId = Integer.parseInt(req.queryParams("SectionId"));
+            Staff newstaff = new Staff(firstname,lastname, ekNo, designation,SectionId ); //ignore the hardcoded categoryId
+            staffDao.add(newstaff);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: show an individual staff that is nested in a Section
+        get("/sections/:Section_id/staff/:staff_id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int idOfstaffToFind = Integer.parseInt(req.params("staff_id"));
+            Staff foundstaff = staffDao.findById(idOfstaffToFind);
+            int idOfSectionToFind = Integer.parseInt(req.params("Section_id"));
+            Section foundSection = sectionDao.findById(idOfSectionToFind);
+            model.put("staff", foundstaff);
+            model.put("Section", foundSection);
+            model.put("sections", sectionDao.getAll()); //refresh list of links for navbar
+            return new ModelAndView(model, "staff-detail.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        //get: show a form to update a staff
+        get("/staff/:id/edit", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            List<Section> allsections = sectionDao.getAll();
+            model.put("sections", allsections);
+            Staff staff = staffDao.findById(Integer.parseInt(req.params("id")));
+            model.put("staff", staff);
+            model.put("editstaff", true);
+            return new ModelAndView(model, "staff-form.hbs");
+        }, new HandlebarsTemplateEngine());
+
+
+        //post: process a form to update a staff
+        post("/staff/:id", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            int staffToEditId = Integer.parseInt(req.params("id"));
+            String newfirstname = req.queryParams("firstname");
+            String newlastname = req.queryParams("lastname");
+            String newEKNo = req.queryParams("ekNo");
+            String newDesignation = req.queryParams("designation");
+            int newScetionID = Integer.parseInt(req.queryParams("SectionId"));
+            staffDao.update(staffToEditId, newfirstname, newlastname,newScetionID,newDesignation, newEKNo);
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        //get: delete all sections
+        get("/staff/delete", (req, res) -> {
+            Map<String, Object> model = new HashMap<>();
+            staffDao.clearAllStaff();
+            res.redirect("/");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
     }
-}
+
+    }
+
