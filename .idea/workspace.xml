@@ -127,11 +127,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/staff-form.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="92" column="13" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="13" />
+            <state relative-caret-position="589">
+              <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -157,11 +157,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/department-form.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
+            <state relative-caret-position="105">
+              <caret line="7" column="38" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -224,7 +224,6 @@
         <option value="$PROJECT_DIR$/src/test/java/models/DatabaseRule.java" />
         <option value="$PROJECT_DIR$/src/test/java/models/DepartmentTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/models/SectionTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/department-form.hbs" />
         <option value="$PROJECT_DIR$/src/main/java/models/DB.java" />
         <option value="$PROJECT_DIR$/src/main/java/models/Section.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/department-detail.hbs" />
@@ -236,10 +235,11 @@
         <option value="$PROJECT_DIR$/src/main/java/dao/StaffDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/dao/Sql2oStaffDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/App.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/staff-form.hbs" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/section-detail.hbs" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/layout.hbs" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/index.hbs" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/staff-form.hbs" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/department-form.hbs" />
       </list>
     </option>
   </component>
@@ -379,7 +379,7 @@
       <workItem from="1558848396431" duration="3093000" />
       <workItem from="1558852677922" duration="58292000" />
       <workItem from="1559039297162" duration="14639000" />
-      <workItem from="1559092182098" duration="2493000" />
+      <workItem from="1559092182098" duration="3033000" />
     </task>
     <servers />
   </component>
@@ -389,7 +389,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="97291000" />
+    <option name="totallyTimeSpent" value="97831000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -601,20 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/department-form.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/department-detail.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/models/Staff.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -677,8 +663,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/staff-form.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="92" column="13" selection-start-line="92" selection-start-column="10" selection-end-line="92" selection-end-column="13" />
+        <state relative-caret-position="589">
+          <caret line="113" column="13" selection-start-line="113" selection-start-column="13" selection-end-line="113" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/department-detail.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/department-form.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="38" />
         </state>
       </provider>
     </entry>

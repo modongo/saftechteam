@@ -2,20 +2,75 @@
 
 {{#partial "content"}}
     {{#if editDepartment}}
+        <div class="container">
 
-        <form action="/departments/{{department.id}}" method="post">
-            <label for="name">Edit this Department's name</label>
-            <input id="newCategoryName" name="newCategoryName" type="text" value="{{department.name}}">
-            <button type="submit" class="btn btn-default">Submit!</button>
-        </form>
+            <form action="/departments/{{department.id}}" class="needs-validation" novalidate method="post">
+                <div class="form-group">
+                    <label for="name">Edit this deaprtment's  name:</label>
+                    <input type="text" class="form-control" id="newCategoryName" placeholder="Enter the department name" name="newCategoryName" required value="{{department.name}}">
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" required> I agree that information is valid
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Check this checkbox to submit.</div>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
     {{else}}
-        <h1>Add a new Department!</h1>
-        <form action="/departments" method="post">
-            <label for="name">Department Name</label>
-            <input id="name" name="name" type="text">
-            <button type="submit" class="btn btn-default">Go!</button>
-        </form>
+
+        <div class="container">
+            <h1>Add a new Department!</h1>
+            <form action="/departments" class="needs-validation" novalidate method="post">
+                <div class="form-group">
+                    <label for="name">Departments name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter the department name" name="name" required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                </div>
+
+
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" required> I agree that information is valid
+                        <div class="valid-feedback">Valid.</div>
+                        <div class="invalid-feedback">Check this checkbox to submit.</div>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
     {{/if}}
+
+
+    <script>
+        // Disable form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
 {{/partial}}
 
 {{> layout.hbs}}
